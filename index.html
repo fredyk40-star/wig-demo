@@ -1,0 +1,787 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Wig Boutique | Premium Wigs & Hairpieces</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        :root {
+            --primary: #ff038e;
+            --secondary: #f5f5f5;
+            --accent: #d4b483;
+            --dark: #333;
+            --light: #fff;
+        }
+        
+        body {
+            color: var(--dark);
+            line-height: 1.6;
+            background-color: var(--secondary);
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header & Navigation */
+        header {
+            background-color: var(--light);
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo i {
+            color: var(--primary);
+            font-size: 2rem;
+            margin-right: 10px;
+        }
+        
+        .logo h1 {
+            font-size: 1.8rem;
+            color: var(--dark);
+        }
+        
+        .logo span {
+            color: var(--primary);
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 30px;
+        }
+        
+        nav ul li a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: color 0.3s;
+        }
+        
+        nav ul li a:hover {
+            color: var(--primary);
+        }
+        
+        .cart-icon {
+            position: relative;
+        }
+        
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background-color: var(--primary);
+            color: white;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 0.8rem;
+        }
+        
+        .mobile-menu {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('images/360_F_598955436_fR6FtCniLZdyHclQs6m9sZssx7i5haFx.jpg');
+            background-size: cover;
+            background-position: center;
+            color: var(--light);
+            text-align: center;
+            padding: 100px 20px;
+        }
+        
+        .hero h2 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 30px;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--primary);
+            color: var(--light);
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn:hover {
+            background-color: var(--accent);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Products Section */
+        .section-title {
+            text-align: center;
+            margin: 60px 0 40px;
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--dark);
+            position: relative;
+            display: inline-block;
+            padding-bottom: 15px;
+        }
+        
+        .section-title h2:after {
+            content: '';
+            position: absolute;
+            width: 70px;
+            height: 3px;
+            background-color: var(--primary);
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+        
+        .product-card {
+            background-color: var(--light);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .product-img {
+            height: 250px;
+            overflow: hidden;
+        }
+        
+        .product-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .product-card:hover .product-img img {
+            transform: scale(1.05);
+        }
+        
+        .product-info {
+            padding: 20px;
+        }
+        
+        .product-info h3 {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+        }
+        
+        .product-info p {
+            color: #666;
+            margin-bottom: 15px;
+            font-size: 0.95rem;
+        }
+        
+        .product-price {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .price {
+            font-weight: 700;
+            font-size: 1.3rem;
+            color: var(--primary);
+        }
+        
+        /* Features Section */
+        .features {
+            background-color: var(--light);
+            padding: 60px 0;
+            margin: 60px 0;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+        
+        .feature-card {
+            text-align: center;
+            padding: 30px 20px;
+            border-radius: 10px;
+            transition: all 0.3s;
+        }
+        
+        .feature-card:hover {
+            background-color: var(--secondary);
+        }
+        
+        .feature-card i {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+        
+        .feature-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+        }
+        
+        /* Testimonials */
+        .testimonials {
+            margin-bottom: 80px;
+        }
+        
+        .testimonial-slider {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            overflow: hidden;
+            padding: 20px 0;
+        }
+        
+        .testimonial {
+            background-color: var(--light);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            text-align: center;
+            display: none;
+        }
+        
+        .testimonial.active {
+            display: block;
+        }
+        
+        .customer-img {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin: 0 auto 20px;
+        }
+        
+        .customer-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .customer-name {
+            font-weight: 700;
+            margin-top: 15px;
+            color: var(--primary);
+        }
+        
+        /* About Section */
+        .about {
+            display: flex;
+            align-items: center;
+            margin-bottom: 80px;
+            flex-wrap: wrap;
+        }
+        
+        .about-img {
+            flex: 1;
+            min-width: 300px;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        
+        .about-img img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        .about-content {
+            flex: 1;
+            min-width: 300px;
+            padding: 0 40px;
+        }
+        
+        .about-content h2 {
+            font-size: 2.2rem;
+            margin-bottom: 20px;
+            color: var(--dark);
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: var(--light);
+            padding: 60px 0 30px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-column h3 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: var(--accent);
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-column ul li a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-column ul li a:hover {
+            color: var(--accent);
+        }
+        
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-icons a {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            text-align: center;
+            line-height: 40px;
+            color: var(--light);
+            transition: all 0.3s;
+        }
+        
+        .social-icons a:hover {
+            background-color: var(--primary);
+            transform: translateY(-5px);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .hero h2 {
+                font-size: 2.5rem;
+            }
+            
+            .about-content {
+                padding: 40px 0 0;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .mobile-menu {
+                display: block;
+            }
+            
+            nav {
+                position: fixed;
+                top: 80px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 80px);
+                background-color: var(--light);
+                transition: left 0.3s;
+                z-index: 999;
+            }
+            
+            nav.active {
+                left: 0;
+            }
+            
+            nav ul {
+                flex-direction: column;
+                padding: 30px;
+            }
+            
+            nav ul li {
+                margin: 15px 0;
+            }
+            
+            .hero h2 {
+                font-size: 2rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <i class="fas fa-crown"></i>
+                <h1>Wig<span>Locks</span></h1>
+            </div>
+            
+            <div class="mobile-menu">
+                <i class="fas fa-bars"></i>
+            </div>
+            
+            <nav>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#products">Shop</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#testimonials">Reviews</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                    <li class="cart-icon">
+                        <a href="#"><i class="fas fa-shopping-cart"></i></a>
+                        <span class="cart-count">3</span>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <h2>Premium Quality Wigs for Every Occasion</h2>
+            <p>Discover our exclusive collection of handcrafted wigs made from the finest synthetic and human hair. Find your perfect match today!</p>
+            <a href="#products" class="btn">Shop Now</a>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section class="products" id="products">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Featured Wigs</h2>
+            </div>
+            
+            <div class="products-grid">
+                <!-- Product 1 -->
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="images/download (1).jpg" alt="Hair Wigs">
+                    </div>
+                    <div class="product-info">
+                        <h3>Golden Curls</h3>
+                        <p>Luxurious blonde curly wig made from 100% premium synthetic hair. Perfect for special occasions.</p>
+                        <div class="product-price">
+                            <span class="price">$89.99</span>
+                            <button class="btn">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Product 2 -->
+                <div class="product-card">
+                    <div class="product">
+                        <img src="images/2742c8e52a0423f4146d94b5ed0feaf5.jpg" alt="Hair Wigs">
+                    </div>
+                    <div class="product-info">
+                        <h3>Midnight Silk</h3>
+                        <p>Silky straight black wig with natural hairline. Made from high-quality human hair blend.</p>
+                        <div class="product-price">
+                            <span class="price">$129.99</span>
+                            <button class="btn">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Product 3 -->
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="images/download.jpg" alt="Hair Wigs">
+                    </div>
+                    <div class="product-info">
+                        <h3>Chic Bob</h3>
+                        <p>Stylish brunette bob wig with side-swept bangs. Easy to maintain and style.</p>
+                        <div class="product-price">
+                            <span class="price">$79.99</span>
+                            <button class="btn">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Product 4 -->
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="images/images.jpg" alt="Hair Wigs">
+                    </div>
+                    <div class="product-info">
+                        <h3>Scarlet Waves</h3>
+                        <p>Vibrant red wavy wig with heat-resistant fibers. Can be styled with low heat tools.</p>
+                        <div class="product-price">
+                            <span class="price">$99.99</span>
+                            <button class="btn">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features">
+        <div class="container">
+            <div class="features-grid">
+                <div class="feature-card">
+                    <i class="fas fa-award"></i>
+                    <h3>Premium Quality</h3>
+                    <p>All our wigs are crafted with the finest materials for a natural look and comfortable fit.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <i class="fas fa-shipping-fast"></i>
+                    <h3>Free Shipping</h3>
+                    <p>Free shipping on all orders over $75. Fast delivery with tracking information provided.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <i class="fas fa-undo"></i>
+                    <h3>Easy Returns</h3>
+                    <p>Not satisfied? Return your wig within 30 days for a full refund or exchange.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <i class="fas fa-headset"></i>
+                    <h3>Expert Support</h3>
+                    <p>Our wig specialists are available to help you choose the perfect style for your needs.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="testimonials" id="testimonials">
+        <div class="container">
+            <div class="section-title">
+                <h2>Customer Reviews</h2>
+            </div>
+            
+            <div class="testimonial-slider">
+                <div class="testimonial active">
+                    <div class="customer-img">
+                        <img src="" alt="Customer">
+                    </div>
+                    <p>"I've never been happier with a wig purchase! The quality is outstanding and it looks so natural. I get compliments every time I wear it."</p>
+                    <div class="customer-name">- Jessica M.</div>
+                </div>
+                
+                <div class="testimonial">
+                    <div class="customer-img">
+                        <img src="images/4_Type_of_Hair_Wigs_You_Should_Buy.jpg" alt="Customer">
+                    </div>
+                    <p>"As someone undergoing chemotherapy, finding a comfortable and realistic wig was so important. LuxeLocks exceeded my expectations completely."</p>
+                    <div class="customer-name">- Sarah T.</div>
+                </div>
+                
+                <div class="testimonial">
+                    <div class="customer-img">
+                        <img src="https://randomuser.me/api/portraits/women/65.jpg" alt="Customer">
+                    </div>
+                    <p>"The customer service is exceptional! They helped me choose the perfect style for my face shape. I'll definitely be buying more wigs from them."</p>
+                    <div class="customer-name">- Maria L.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="container">
+            <div class="about-img">
+                <img src="images/images.jpg" alt="About Us">
+            </div>
+            <div class="about-content">
+                <h2>About Wig-Locks Boutique</h2>
+                <p>Founded in 2015, LuxeLocks has been dedicated to providing high-quality wigs that empower individuals to express their unique style. Whether you're looking for a temporary change, dealing with hair loss, or simply wanting to enhance your natural beauty, we have the perfect wig for you.</p>
+                <p>Our wigs are carefully selected and crafted from the finest materials, ensuring they look natural and feel comfortable. We work with skilled artisans from around the world to bring you a diverse collection of styles, colors, and textures.</p>
+                <p>At LuxeLocks, we believe that everyone deserves to feel confident and beautiful. That's why we're committed to offering exceptional products paired with personalized customer service.</p>
+                <a href="#contact" class="btn" style="margin-top: 20px;">Contact Us</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>LuxeLocks</h3>
+                    <p>Premium wigs and hairpieces for every style and occasion. Empowering confidence through beautiful hair.</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-pinterest-p"></i></a>
+                        <a href="#"><i class="fab fa-tiktok"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#products">Shop All Wigs</a></li>
+                        <li><a href="#">Human Hair Wigs</a></li>
+                        <li><a href="#">Synthetic Wigs</a></li>
+                        <li><a href="#">Accessories</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Customer Service</h3>
+                    <ul>
+                        <li><a href="#">Shipping Policy</a></li>
+                        <li><a href="#">Returns & Exchanges</a></li>
+                        <li><a href="#">Wig Care Guide</a></li>
+                        <li><a href="#">Size Guide</a></li>
+                        <li><a href="#">FAQ</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Contact Us</h3>
+                    <ul>
+                        <li><i class="fas fa-map-marker-alt"></i> 123 Beauty Street, Kronum-Abuohia</li>
+                        <li><i class="fas fa-phone"></i> (233) 123-4567</li>
+                        <li><i class="fas fa-envelope"></i> info@wiglocks.com</li>
+                        <li><i class="fas fa-clock"></i> Mon-Fri: 9am-6pm</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2026 Wig-Locks Boutique. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        document.querySelector('.mobile-menu').addEventListener('click', function() {
+            document.querySelector('nav').classList.toggle('active');
+        });
+        
+        // Close mobile menu when clicking a link
+        document.querySelectorAll('nav a').forEach(link => {
+            link.addEventListener('click', function() {
+                document.querySelector('nav').classList.remove('active');
+            });
+        });
+        
+        // Testimonial slider
+        const testimonials = document.querySelectorAll('.testimonial');
+        let currentTestimonial = 0;
+        
+        function showNextTestimonial() {
+            testimonials[currentTestimonial].classList.remove('active');
+            currentTestimonial = (currentTestimonial + 1) % testimonials.length;
+            testimonials[currentTestimonial].classList.add('active');
+        }
+        
+        // Change testimonial every 5 seconds
+        setInterval(showNextTestimonial, 5000);
+        
+        // Add to cart functionality
+        document.querySelectorAll('.product-card .btn').forEach(button => {
+            button.addEventListener('click', function() {
+                const productName = this.parentElement.parentElement.querySelector('h3').textContent;
+                const cartCount = document.querySelector('.cart-count');
+                let count = parseInt(cartCount.textContent);
+                cartCount.textContent = count + 1;
+                
+                // Show a quick confirmation
+                alert(`Added "${productName}" to your cart!`);
+            });
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if(targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if(targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
